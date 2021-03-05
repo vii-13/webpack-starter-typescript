@@ -5,8 +5,26 @@ const usuario = {
     activo : false,
     nacimiento : 0,
 }
+const usuariosRef = db.collection('usuarios');
 
-// insertando datos
-
+// insertando datos----
 // db.collection('usuarios')
 // .add(usuario)
+// .then(docRef => {
+//     console.log(docRef.delete() )
+// })
+// .catch(e => console.log('error', e))
+
+// actualizando datos------
+// update es solo para cambiar un campo -----
+// usuariosRef.doc('Z69D5mBjiuxyiJ8kwyys')
+// .update({
+//     activo:true
+// });
+
+// set es destructivo ----
+// usuariosRef.doc('Z69D5mBjiuxyiJ8kwyys')
+// .set({
+//     activo:true,
+//     edad: 16
+// });
