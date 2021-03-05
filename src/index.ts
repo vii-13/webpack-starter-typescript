@@ -28,3 +28,10 @@ const usuariosRef = db.collection('usuarios');
 //     activo:true,
 //     edad: 16
 // });
+
+// borrando datos----
+// usuariosRef
+//     .doc('Z69D5mBjiuxyiJ8kwyys')
+//     .delete()
+//     .then( () => console.log('borrado'))
+//     .catch(e => console.log('error', e));
