@@ -35,3 +35,18 @@ const usuariosRef = db.collection('usuarios');
 //     .delete()
 //     .then( () => console.log('borrado'))
 //     .catch(e => console.log('error', e));
+
+// seleccionando datos-------
+usuariosRef
+    .onSnapshot(snap => {
+
+        const usuarios: any[] = [];
+
+        snap.forEach(snapHijo => {
+            usuarios.push({
+                id:snapHijo.id,
+                ...snapHijo.data()
+            })   
+        });
+        console.log(usuarios)
+   })
