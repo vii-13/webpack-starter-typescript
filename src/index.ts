@@ -7,7 +7,7 @@ import {retornaDocumentos} from './helpers/mostrar-documentos';
 //     nacimiento : 0,
 //     salario : 1800
 // }
-// const usuariosRef = db.collection('usuarios');
+const usuariosRef = db.collection('usuarios');
 
 // insertando datos----
 // db.collection('usuarios')
@@ -62,5 +62,57 @@ import {retornaDocumentos} from './helpers/mostrar-documentos';
 //            .where('activo','==' ,true)
 // .get().then(retornaDocumentos);
 
+// ordeBy--------
+// usuariosRef
+//       .orderBy('nombre')
+//       .orderBy('salario')
+//       .get().then(retornaDocumentos)
 
+
+// paginacion-----
+// usuariosRef.limit(3)
+//      .get().then(retornaDocumentos);
+
+// ----------
+const btnNext = document.createElement('button');
+btnNext.innerText = 'new page';
+document.body.append(btnNext)
+
+let firstDocument:any =null;
+let lastDocument:any =null;
+btnNext.addEventListener('click', () => {
+    
+    const query = usuariosRef
+                    .orderBy('nombre')
+                    .startAfter(lastDocument)
+
+    query.limit(2).get().then(snap => {
+
+        firstDocument = snap.docs[ 0 ] || null;
+        lastDocument = snap.docs[ snap.docs.length - 1] || null;
+        retornaDocumentos(snap);
+    })                    
+});
+
+btnNext.click();
+
+// btn previous------
+const btnPrev = document.createElement('button');
+btnPrev.innerText = 'Previous page';
+document.body.append(btnPrev)
+
+
+btnPrev.addEventListener('click', () => {
+    
+    const query = usuariosRef
+                    .orderBy('nombre')
+                    .endBefore(firstDocument)
+
+    query.limit(2).get().then(snap => {
+
+        firstDocument = snap.docs[ 0 ] || null;
+        lastDocument = snap.docs[ snap.docs.length - 1] || null;
+        retornaDocumentos(snap);
+    })                    
+});
 
