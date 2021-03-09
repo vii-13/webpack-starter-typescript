@@ -7,7 +7,7 @@ import {retornaDocumentos} from './helpers/mostrar-documentos';
 //     nacimiento : 0,
 //     salario : 1800
 // }
-// const usuariosRef = db.collection('usuarios');
+const usuariosRef = db.collection('usuarios');
 
 // insertando datos----
 // db.collection('usuarios')
@@ -62,5 +62,9 @@ import {retornaDocumentos} from './helpers/mostrar-documentos';
 //            .where('activo','==' ,true)
 // .get().then(retornaDocumentos);
 
-
+// ordeBy--------
+// usuariosRef
+//       .orderBy('nombre')
+//       .orderBy('salario')
+//       .get().then(retornaDocumentos)
 
